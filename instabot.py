@@ -188,7 +188,7 @@ def get_comment_list(insta_username):
             print colored("List of people who commented on Your Recent post", 'blue')
             for _ in range(len(comment_list['data'])):
                 if comment_list['data'][position-1]['text']:
-                    print colored(comment_list['data'][position-1]['from']['username'],'magenta') +colored( ' said: ','magenta') + colored(comment_list['data'][position-1]['text'],'blue')      #    Json Parsing ..printing the comments ..
+                    print colored(comment_list['data'][position-1]['from']['username'],'blue') +colored( ' said: ','blue') + colored(comment_list['data'][position-1]['text'],'blue')      #    Json Parsing ..printing the comments ..
                     position = position+1
                 else:
                     print colored('No one had commented on Your post!\n', 'red')
@@ -209,9 +209,9 @@ def post_a_comment(insta_username):
     make_comment = requests.post(request_url, payload).json()
 
     if make_comment['meta']['code'] == 200:
-        print "Successfully added a new comment!"  # successfully addition of comment
+        print colored("Successfully added a new comment!",'green')  # successfully addition of comment
     else:
-        print "Unable to add comment. Try again!"
+        print colored("Unable to add comment. Try again!",'red')
 
 
 #Function declaration to make delete negative comments from the recent post
@@ -241,12 +241,14 @@ def delete_negative_comment(insta_username):
                 else:
                     print 'Positive comment : %s\n' % (comment_text)
         else:
-            print 'There are no existing comments on the post!'
+            print colored('There are no existing comments on the post!','red')
     else:
-        print 'Status code other than 200 received!'
+        print colored('Status code other than 200 received!','red')
 
 
 # function for caption based comment - Extra Objective
+
+# captions of a Token Owner posts = darshanraval, green, pizza
 
 def get_post_by_caption(insta_username):
     caption = raw_input("Enter caption : ")
@@ -268,11 +270,11 @@ def get_post_by_caption(insta_username):
                     if sabha == caption:
                         flag = True
             if (flag):
-                print "Caption found"
+                print colored("Caption found",'green')
             else:
-                print "Caption not found"
+                print colored("Caption not found",'red')
         else:
-            cprint("User doesn't have any post\n", 'blue')
+            print colored("User doesn't have any post\n", 'red')
     else:
         print(colored('Status code other than 200 received!\n', 'red'))
 
