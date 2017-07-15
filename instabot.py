@@ -24,7 +24,7 @@ def self_info():
     print 'GET request url : %s' % (request_url)
     user_info = requests.get(request_url).json()
 
-    if user_info['meta']['code'] == 200:
+    if user_info['meta']['code'] == 200:  #checking status code
         if len(user_info['data']):
             print 'Username: %s' % (user_info['data']['username'])
             print 'No. of followers: %s' % (user_info['data']['counts']['followed_by'])
@@ -143,6 +143,8 @@ def get_post_id(insta_username):
 def like_a_post(insta_username):
     media_id = get_post_id(insta_username)
     request_url = (BASE_URL + 'media/%s/likes') % (media_id)
+
+    #    passing the payloads
     payload = {"access_token": APP_ACCESS_TOKEN}
     print 'POST request url : %s' % (request_url)
     post_a_like = requests.post(request_url, payload).json()
@@ -202,6 +204,8 @@ def get_comment_list(insta_username):
 def post_a_comment(insta_username):
     media_id = get_post_id(insta_username)
     comment_text = raw_input("Your comment: ")
+
+    #    passing the payloads
     payload = {"access_token": APP_ACCESS_TOKEN, "text" : comment_text}
     request_url = (BASE_URL + 'media/%s/comments') % (media_id)
     print 'POST request url : %s' % (request_url)
@@ -284,17 +288,17 @@ def start_bot():
         print '\n'
         print colored('Hello! ---Welcome to InstaBot---!','green')
         print colored('Menu options are:','blue')
-        print colored("1.Get your own details\n",'blue')
-        print colored("2.Get details of a user by username\n", 'blue')
-        print colored("3.Get your own recent post\n",'blue')
-        print colored("4.Get the recent post of a user by username\n",'blue')
-        print colored("5.Get a list of people who have liked the recent post of a user\n",'blue')
-        print colored("6.Like the recent post of a user\n",'blue')
-        print colored("7.Get a list of comments on the recent post of a user\n",'blue')
-        print colored("8.Make a comment on the recent post of a user\n",'blue')
-        print colored("9.Delete negative comments from the recent post of a user\n",'blue')
-        print colored("10.Get post by perticular caption",'blue')
-        print colored("11.Exit", 'blue')
+        print colored("1. To Get your own details\n",'blue')
+        print colored("2. To Get details of a user by username\n", 'blue')
+        print colored("3. To Get your own recent post\n",'blue')
+        print colored("4. To Get the recent post of a user by username\n",'blue')
+        print colored("5. To Get a list of people who have liked the recent post of a user\n",'blue')
+        print colored("6. To Like the recent post of a user\n",'blue')
+        print colored("7. To Get a list of comments on the recent post of a user\n",'blue')
+        print colored("8. To Make a comment on the recent post of a user\n",'blue')
+        print colored("9. To Delete negative comments from the recent post of a user\n",'blue')
+        print colored("10. To Get post by perticular caption",'blue')
+        print colored("11. To Exit The Menu", 'blue')
 
 
 
