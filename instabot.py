@@ -269,13 +269,18 @@ def get_post_by_caption(insta_username):
     if user_media['meta']['code'] == 200: # status code checking
         if len(user_media['data']):
             flag = False
+            item = 1
             for post in user_media['data']:
                 for sabha in post['tags']:
                     if sabha == caption:
                         flag = True
-            if (flag):
-                print colored("Caption found",'green')
-            else:
+                        # counts the caption of existing posts and saves them
+                        print item,colored("post Found and saved",'green')
+                        image_name = str(item)+'.jpeg'
+                        image_url = post['images']['standard_resolution']['url']
+                        urllib.urlretrieve(image_url, image_name)
+                        item +=1
+            if (not flag):
                 print colored("Caption not found",'red')
         else:
             print colored("User doesn't have any post\n", 'red')
