@@ -1,3 +1,6 @@
+#import details file
+import details
+
 #import requests library
 import requests
 
