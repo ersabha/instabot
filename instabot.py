@@ -305,10 +305,8 @@ def start_bot():
         print colored("7. To Get a list of comments on the recent post of a user\n",'blue')
         print colored("8. To Make a comment on the recent post of a user\n",'blue')
         print colored("9. To Delete negative comments from the recent post of a user\n",'blue')
-        print colored("10. To Get post by perticular caption",'blue')
-        print colored("11. To Exit The Menu", 'blue')
-
-
+        print colored("10. To Get post by particular caption-(EXTRA OBJECTIVE)",'green')
+        print colored("11. To Exit The Menu", 'red')
 
 # function calling according to the choice selection
         choice=raw_input(colored("Enter you choice: ",'blue'))
