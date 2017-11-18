@@ -14,9 +14,9 @@ from textblob.sentiments import NaiveBayesAnalyzer
 #Import termcolor library
 from termcolor import colored, cprint
 
-APP_ACCESS_TOKEN = '5699261293.b85911a.cd9a3f2e1f28479189a2f24cf4a739b1'
+APP_ACCESS_TOKEN = '5699261293.09da3c1.b9271e354aab4544b08c07c2c16e81e6'
 #Token Owner : rosetaylor1232
-#Sandbox Users : im_nikkimikki, im_mukeshdubey, simranbindal38, shreya1400
+#Sandbox Users : saby_11_, im_mukeshdubey, simranbindal38, shreya1400, im_nikkimikki
 
 BASE_URL = 'https://api.instagram.com/v1/'
 
