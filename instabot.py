@@ -14,9 +14,9 @@ from textblob.sentiments import NaiveBayesAnalyzer
 #Import termcolor library
 from termcolor import colored, cprint
 
-APP_ACCESS_TOKEN = '5699261293.09da3c1.b9271e354aab4544b08c07c2c16e81e6'
+APP_ACCESS_TOKEN = '5699261293.8d6f1c6.132dcac4101a498687182649bc00d1f1'
 #Token Owner : rosetaylor1232
-#Sandbox Users : saby_11_, im_mukeshdubey, simranbindal38, shreya1400, im_nikkimikki
+#Sandbox Users : saby_11_, im_mukeshdubey
 
 BASE_URL = 'https://api.instagram.com/v1/'
 
@@ -259,6 +259,7 @@ def delete_negative_comment(insta_username):
 
 def get_post_by_caption(insta_username):
     caption = raw_input("Enter caption : ")
+    comm = raw_input("Enter comment")
     user_id = get_user_id(insta_username)
     if user_id == None:
         cprint("This user doesn't exist in your sandbox list", 'red')
@@ -276,6 +277,18 @@ def get_post_by_caption(insta_username):
             for post in user_media['data']:
                 for sabha in post['tags']:
                     if sabha == caption:
+                        postid = post['id']
+                        payload = {"access_token": APP_ACCESS_TOKEN, "text": comm}
+                        request_url = (BASE_URL + 'media/%s/comments') % (postid)
+                        print 'POST request url : %s' % (request_url)
+
+                        make_comment = requests.post(request_url, payload).json()
+
+                        if make_comment['meta']['code'] == 200:
+                            print colored("Successfully added a new comment!",
+                                          'green')  # successfully addition of comment
+                        else:
+                            print colored("Unable to add comment. Try again!", 'red')
                         flag = True
                         # counts the caption of existing posts and saves them
                         print item,colored("post Found and saved",'green')
@@ -283,6 +296,8 @@ def get_post_by_caption(insta_username):
                         image_url = post['images']['standard_resolution']['url']
                         urllib.urlretrieve(image_url, image_name)
                         item +=1
+
+
             if (not flag):
                 print colored("Caption not found",'red')
         else:
@@ -305,7 +320,7 @@ def start_bot():
         print colored("7. To Get a list of comments on the recent post of a user\n",'blue')
         print colored("8. To Make a comment on the recent post of a user\n",'blue')
         print colored("9. To Delete negative comments from the recent post of a user\n",'blue')
-        print colored("10. To Get post by particular caption-(EXTRA OBJECTIVE)",'green')
+        print colored("10. To do Desired Commenting on Desired Posts on the basis of Hashtag-(EXTRA OBJECTIVE)",'green')
         print colored("11. To Exit The Menu", 'red')
 
 # function calling according to the choice selection
